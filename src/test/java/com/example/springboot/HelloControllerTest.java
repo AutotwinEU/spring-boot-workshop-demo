@@ -26,4 +26,11 @@ public class HelloControllerTest {
 				.andExpect(content().string(equalTo("Greetings from Spring Boot!")));
 	}
 
+	@Test
+	public void getHealth() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/health").accept(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.status").value("OK"));
+	}
+
 }
